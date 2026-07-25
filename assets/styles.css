@@ -1,0 +1,425 @@
+/* ─────────────────────────────────────────────────────────────
+   Дизайн-контракт портфолио — источник истины для index.html.
+   Правило: новый цвет, радиус, тень или длительность анимации
+   сначала появляется здесь как токен, потом используется.
+   Одна нейтральная шкала + ровно один акцент. Без градиентов,
+   glassmorphism, эмодзи и «AI-powered» бейджей.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Палитра */
+  --bg: #09090b;
+  --surface: rgba(24, 24, 27, 0.55);
+  --surface-strong: #18181b;
+  --hairline: rgba(255, 255, 255, 0.07);
+  --hairline-strong: rgba(255, 255, 255, 0.12);
+  --text: #fafafa;
+  --text-2: #d4d4d8;
+  --text-3: #a1a1aa;
+  --text-4: #71717a;
+  --accent: #34d399;
+
+  /* Типографика */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Ритм */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --gap: 24px;
+  --section: 88px;
+  --measure: 68ch;
+  --page: 940px;
+
+  /* Движение — коротко и незаметно */
+  --dur: 120ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 72px 24px 120px;
+}
+
+/* ── Типографика ────────────────────────────────────────────── */
+
+h1,
+h2,
+h3 {
+  color: var(--text);
+  font-weight: 560;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(34px, 6vw, 52px);
+  letter-spacing: -0.032em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(24px, 3.4vw, 30px);
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 14px;
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline-strong);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  margin: 0 0 14px;
+}
+
+.lead {
+  font-size: 17px;
+  color: var(--text-2);
+}
+
+.muted {
+  color: var(--text-4);
+  font-size: 14px;
+}
+
+.nums {
+  font-variant-numeric: tabular-nums;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--text-2);
+}
+
+/* ── Структура ──────────────────────────────────────────────── */
+
+header.hero {
+  padding-bottom: 8px;
+}
+
+header.hero h1 {
+  margin-bottom: 18px;
+}
+
+section {
+  margin-top: var(--section);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 32px;
+}
+
+.section-head .index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* ── Карточки ───────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color var(--dur) var(--ease);
+}
+
+.card:hover {
+  border-color: var(--hairline-strong);
+}
+
+.card + .card {
+  margin-top: var(--gap);
+}
+
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-bottom: 6px;
+}
+
+.card-role {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.card h2 {
+  font-size: 22px;
+}
+
+/* ── Списки ─────────────────────────────────────────────────── */
+
+ul.plain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.plain > li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 12px;
+  max-width: var(--measure);
+}
+
+ul.plain > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hairline-strong);
+}
+
+ul.plain > li.accent::before {
+  background: var(--accent);
+}
+
+ul.plain > li strong {
+  color: var(--text);
+  font-weight: 560;
+}
+
+/* Заголовок, идущий сразу за списком, нуждается в собственном воздухе */
+ul.plain + h3 {
+  margin-top: 32px;
+}
+
+/* ── Конвейер: нумерованные шаги ────────────────────────────── */
+
+.pipeline {
+  list-style: none;
+  counter-reset: step;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.pipeline > li {
+  position: relative;
+  counter-increment: step;
+  padding-left: 34px;
+  margin-bottom: 12px;
+  max-width: var(--measure);
+}
+
+.pipeline > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-4);
+}
+
+.pipeline > li strong {
+  color: var(--text);
+  font-weight: 560;
+}
+
+/* ── Метрики ────────────────────────────────────────────────── */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 24px 0 4px;
+}
+
+.metric {
+  background: var(--surface-strong);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Лейбл занимает свободную высоту, поэтому значения выровнены по базе */
+.metric dt {
+  font-size: 12px;
+  color: var(--text-4);
+  margin-bottom: 6px;
+  flex: 1;
+}
+
+.metric dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 560;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ── Теги стека ─────────────────────────────────────────────── */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 4px 9px;
+}
+
+/* ── Таблица ────────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px 14px 12px 0;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+}
+
+th {
+  color: var(--text-4);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+td strong {
+  color: var(--text);
+  font-weight: 560;
+}
+
+/* Таблица «ключ — значение»: узкая колонка лейбла */
+.kv th {
+  width: 170px;
+  padding-right: 20px;
+}
+
+/* Широкие таблицы не ломают вёрстку на узком экране */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-scroll table {
+  min-width: 560px;
+}
+
+/* ── Подвал ─────────────────────────────────────────────────── */
+
+footer {
+  margin-top: var(--section);
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --section: 64px;
+  }
+
+  .page {
+    padding: 48px 18px 80px;
+  }
+
+  .card {
+    padding: 22px 18px;
+  }
+
+  /* «ключ — значение» складывается в один столбец: лейбл сверху */
+  .kv th,
+  .kv td {
+    display: block;
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .kv th {
+    padding-top: 16px;
+  }
+
+  .kv td {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto;
+  }
+}
